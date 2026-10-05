@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Gerador e validador de senhas seguro e moderno">
+
+    <title>🔐 SecurePass | Gerador de Senhas</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-effect"></div>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🔐</span>
+            <div>
+                <h1>Secure<span>Pass</span></h1>
+                <p>Gerador e validador de senhas</p>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <section class="intro">
+            <span class="tag">🛡️ SEGURANÇA DIGITAL</span>
+
+            <h2>
+                Crie senhas
+                <span>fortes e seguras</span>
+            </h2>
+
+            <p>
+                Gere senhas aleatórias ou verifique a segurança
+                de uma senha existente diretamente no seu navegador.
+            </p>
+        </section>
+
+
+        <section class="cards">
+
+            <!-- GERADOR -->
+            <div class="card generator-card">
+
+                <div class="card-header">
+                    <div class="icon-box purple">🔑</div>
+
+                    <div>
+                        <h3>Gerar Senha</h3>
+                        <p>Crie uma senha aleatória e segura</p>
+                    </div>
+                </div>
+
+
+                <div class="password-display">
+
+                    <input
+                        type="text"
+                        id="generatedPassword"
+                        readonly
+                        placeholder="Sua senha aparecerá aqui"
+                        aria-label="Senha gerada"
+                    >
+
+                    <button
+                        id="copyButton"
+                        class="icon-button"
+                        title="Copiar senha"
+                        aria-label="Copiar senha"
+                    >
+                        📋
+                    </button>
+
+                </div>
+
+
+                <div class="strength-container">
+
+                    <div class="strength-info">
+                        <span>Força da senha</span>
+                        <strong id="generatorStrengthText">
+                            —
+                        </strong>
+                    </div>
+
+                    <div class="strength-bar">
+                        <div
+                            id="generatorStrengthBar"
+                            class="strength-progress"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-title">
+                        <label for="length">Tamanho da senha</label>
+
+                        <span id="lengthValue">16</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="length"
+                        min="8"
+                        max="32"
+                        value="16"
+                    >
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-title">
+                        <span>Tipos de caracteres</span>
+                    </div>
+
+
+                    <div class="options">
+
+                        <label class="check-option">
+                            <input
+                                type="checkbox"
+                                id="uppercase"
+                                checked
+                            >
+
+                            <span class="custom-check">✓</span>
+
+                            <span>
+                                <b>A-Z</b>
+                                <small>Maiúsculas</small>
+                            </span>
+                        </label>
+
+
+                        <label class="check-option">
+                            <input
+                                type="checkbox"
+                                id="lowercase"
+                                checked
+                            >
+
+                            <span class="custom-check">✓</span>
+
+                            <span>
+                                <b>a-z</b>
+                                <small>Minúsculas</small>
+                            </span>
+                        </label>
+
+
+                        <label class="check-option">
+                            <input
+                                type="checkbox"
+                                id="numbers"
+                                checked
+                            >
+
+                            <span class="custom-check">✓</span>
+
+                            <span>
+                                <b>0-9</b>
+                                <small>Números</small>
+                            </span>
+                        </label>
+
+
+                        <label class="check-option">
+                            <input
+                                type="checkbox"
+                                id="symbols"
+                                checked
+                            >
+
+                            <span class="custom-check">✓</span>
+
+                            <span>
+                                <b>!@#</b>
+                                <small>Símbolos</small>
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <p id="generatorError" class="error-message"></p>
+
+
+                <button id="generateButton" class="main-button">
+                    <span>⚡</span>
+                    Gerar Senha
+                </button>
+
+            </div>
+
+
+            <!-- VALIDADOR -->
+            <div class="card validator-card">
+
+                <div class="card-header">
+
+                    <div class="icon-box cyan">🛡️</div>
+
+                    <div>
+                        <h3>Validar Senha</h3>
+                        <p>Descubra o nível de segurança</p>
+                    </div>
+
+                </div>
+
+
+                <div class="validator-input">
+
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        placeholder="Digite uma senha para analisar..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="togglePassword"
+                        class="icon-button"
+                        title="Mostrar ou ocultar senha"
+                        aria-label="Mostrar ou ocultar senha"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <div class="strength-container validator-strength">
+
+                    <div class="strength-info">
+                        <span>Nível de segurança</span>
+
+                        <strong id="validatorStrengthText">
+                            Digite uma senha
+                        </strong>
+                    </div>
+
+                    <div class="strength-bar">
+                        <div
+                            id="validatorStrengthBar"
+                            class="strength-progress"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="requirements">
+
+                    <div class="requirements-title">
+                        <span>Requisitos</span>
+
+                        <span id="requirementCount">
+                            0/8
+                        </span>
+                    </div>
+
+
+                    <ul>
+
+                        <li id="req-length">
+                            <span class="status">×</span>
+                            <span>Pelo menos 8 caracteres</span>
+                        </li>
+
+                        <li id="req-uppercase">
+                            <span class="status">×</span>
+                            <span>Possui letra maiúscula</span>
+                        </li>
+
+                        <li id="req-lowercase">
+                            <span class="status">×</span>
+                            <span>Possui letra minúscula</span>
+                        </li>
+
+                        <li id="req-number">
+                            <span class="status">×</span>
+                            <span>Possui número</span>
+                        </li>
+
+                        <li id="req-symbol">
+                            <span class="status">×</span>
+                            <span>Possui símbolo</span>
+                        </li>
+
+                        <li id="req-space">
+                            <span class="status">×</span>
+                            <span>Não possui espaços</span>
+                        </li>
+
+                        <li id="req-common">
+                            <span class="status">×</span>
+                            <span>Não é uma senha muito comum</span>
+                        </li>
+
+                        <li id="req-variety">
+                            <span class="status">×</span>
+                            <span>Possui boa variedade</span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <button
+                    id="clearButton"
+                    class="secondary-button"
+                >
+                    🗑️ Limpar
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- DICAS -->
+        <section class="tips-card">
+
+            <div class="tips-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h3>Dicas para uma senha segura</h3>
+
+                <p>
+                    Use senhas longas e diferentes para cada conta.
+                    Combine letras maiúsculas, minúsculas, números e símbolos.
+                    Evite nomes, datas de nascimento e palavras muito comuns.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="privacy">
+
+            <span>🔒</span>
+
+            <div>
+                <strong>Sua senha permanece no seu dispositivo</strong>
+
+                <p>
+                    Este projeto funciona localmente no navegador.
+                    Nenhuma senha é enviada para servidores ou armazenada
+                    no armazenamento do navegador.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            SecurePass © 2026 • Gerador e Validador de Senhas
+        </p>
+    </footer>
+
+
+    <div id="toast" class="toast">
+        ✓ Senha copiada!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
